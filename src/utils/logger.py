@@ -8,19 +8,18 @@ def setup_logger(name: str = "WeeklyReport") -> logging.Logger:
     logger.setLevel(logging.DEBUG)
 
     if not logger.handlers:
-        # Console Handler
-        console_handler = logging.StreamHandler(sys.stdout)
-        console_handler.setLevel(logging.DEBUG)
-        console_formatter = logging.Formatter(
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
-        console_handler.setFormatter(console_formatter)
-        logger.addHandler(console_handler)
 
-        # File Handler (Optional, strictly for debugging if needed, but keeping it simple for now)
-        # logs_dir = Path("logs")
-        # logs_dir.mkdir(exist_ok=True)
-        # file_handler = logging.FileHandler(logs_dir / "app.log")
-        # ...
+
+        # File Handler
+        try:
+            file_handler = logging.FileHandler("app_log.txt", encoding="utf-8")
+            file_handler.setLevel(logging.DEBUG)
+            file_formatter = logging.Formatter(
+                "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+            )
+            file_handler.setFormatter(file_formatter)
+            logger.addHandler(file_handler)
+        except Exception as e:
+            print(f"Failed to setup file logging: {e}")
 
     return logger

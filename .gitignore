@@ -208,3 +208,6 @@ __marimo__/
 
 # Weekly Report Tool
 *.xlsx
+app_log.txt
+*.log
+
