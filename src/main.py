@@ -13,6 +13,14 @@ from src.utils.logger import setup_logger
 logger = setup_logger("Main")
 
 def main():
+    # Redirect stderr to log file to capture C-level warnings (e.g. macOS IMK/TSM logs)
+    # and silence the terminal as requested.
+    try:
+        log_file = open("app_log.txt", "a")
+        os.dup2(log_file.fileno(), sys.stderr.fileno())
+    except Exception as e:
+        logger.warning(f"Failed to redirect stderr: {e}")
+
     logger.info("Starting Weekly Report Tool...")
     ctk.set_appearance_mode("System")
     ctk.set_default_color_theme("blue")
