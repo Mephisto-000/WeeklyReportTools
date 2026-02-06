@@ -43,3 +43,23 @@ src/
 ## 資料儲存
 應用程式會自動在專案根目錄建立 `work_reports.xlsx`。
 **請勿在應用程式執行時手動修改此檔案，以免資料損壞。**
+
+## 打包應用程式 (Packaging)
+
+本專案使用 `Nuitka` 進行打包。
+
+### macOS 版本 (.app)
+若要在 macOS 上建立可執行的 `.app` 應用程式：
+
+```bash
+uv run python -m nuitka --standalone --enable-plugin=tk-inter --include-package-data=customtkinter --output-dir=dist --macos-create-app-bundle --macos-app-name="WeeklyReport" --macos-app-mode=gui src/main.py
+```
+打包完成後，您可以在 `dist/` 資料夾中找到 `WeeklyReport.app`。
+
+### Windows 版本 (.exe)
+若要建立 Windows 執行檔，請在 Windows 環境下執行：
+
+```bash
+uv run python -m nuitka --standalone --enable-plugin=tk-inter --include-package-data=customtkinter --output-dir=dist src/main.py
+```
+打包完成後，您可以在 `dist/` 資料夾中找到 `main.exe`。
