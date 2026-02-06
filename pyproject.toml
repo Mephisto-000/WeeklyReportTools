@@ -3,9 +3,10 @@ name = "weeklyreporttools"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.13"
 dependencies = [
     "customtkinter>=5.2.2",
+    "nuitka>=4.0",
     "openpyxl>=3.1.5",
     "packaging>=26.0",
 ]

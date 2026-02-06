@@ -211,3 +211,7 @@ __marimo__/
 app_log.txt
 *.log
 
+# Build Artifacts
+dist/
+*.build
+
